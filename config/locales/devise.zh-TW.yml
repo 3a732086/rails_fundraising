@@ -12,7 +12,8 @@ zh-TW:
             password:
               blank: 密碼不能空白
               too_short: 密碼要大於六個字元
-            password_confirmation: 密碼與確認密碼不符
+            password_confirmation:
+              confirmation: 密碼與確認密碼不符
     attributes:
       user:
         confirmation_sent_at: 確認信已寄於
