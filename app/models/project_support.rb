@@ -1,0 +1,2 @@
+class ProjectSupport < ApplicationRecord
+end
