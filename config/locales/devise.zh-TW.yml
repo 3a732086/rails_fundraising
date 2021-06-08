@@ -2,7 +2,7 @@ zh-TW:
   activerecord:
     errors:
       models:
-        users:
+        user:
           attributes:
             email:
               blank: Email不能空白
@@ -11,6 +11,7 @@ zh-TW:
               blank: 名稱不能空白
             password:
               blank: 密碼不能空白
+              too_short: 密碼要大於六個字元
             password_confirmation: 密碼與確認密碼不符
     attributes:
       user:
