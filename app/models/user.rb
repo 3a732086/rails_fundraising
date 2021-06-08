@@ -6,4 +6,7 @@ class User < ApplicationRecord
          :confirmable#, :omniauthable
 
   validates :name, presence: true
+
+  has_many :pledges
+  has_one :project_owner
 end
