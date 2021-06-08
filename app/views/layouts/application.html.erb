@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PbExample</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+      進度條腳踏發動器
+    </title>
+    <meta name="description" content="這是進度條線上課程Ruby on Rails與Bootstrap 4課程範例，僅供測試與學習使用，請勿當真" />
+    <meta name="keywords" content="Bootstrap, 網站, 開發, 程式, 設計, 教學, jquery, HTML, HTML5, CSS, JavaScript, Swift, WordPress, iOS, Ruby On Rails, Arduino">
+    <meta name="copyright" content="思誠科技有限公司">
+    <meta name="robots" content="NOINDEX, NOFOLLOW">
+    <meta name="reply-to" content="service@progressbar.tw">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,11 +23,9 @@
   </head>
 
   <body>
-    <%= link_to '登入', user_session_path %>
-    <%= link_to '登出', destroy_user_session_path, method: :delete %>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <%= render partial: 'layouts/nav'%>
+  <%= render partial: 'layouts/notice'%>
+  <%= yield %>
+  <%= render partial: 'layouts/footer'%>
   </body>
 </html>
