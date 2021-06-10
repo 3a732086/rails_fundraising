@@ -5,6 +5,8 @@ class Project < ApplicationRecord
 
   enum status: [:is_hidden, :is_published, :succeeded, :failed, :cancel]
 
+  scope :is_now_on_sale, -> {self.is_published.where('due_date > ?', Time.now)}
+
   mount_uploader :cover_image, CoverImageUploader
 
 
