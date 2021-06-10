@@ -1,7 +1,9 @@
 class Project < ApplicationRecord
   belongs_to :project_owner
   belongs_to :category
+
   has_many :project_supports
+  has_many :pledges, through: :project_supports
 
   enum status: [:is_hidden, :is_published, :succeeded, :failed, :cancel]
 
@@ -13,6 +15,10 @@ class Project < ApplicationRecord
   validates :name, :brief, :description, :ad_url, :cover_image, presence: true
   validates_numericality_of :goal, greater_than: 0
   validate :valid_due_date?
+
+  def seconds_left
+    due_date.to_i - Time.now.to_i
+  end
 
   private
 
