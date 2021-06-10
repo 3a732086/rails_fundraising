@@ -1,0 +1,16 @@
+<%= link_to project_path(project), style: "text-decoration: none; color: black;" do %>
+<div class="card" style="width: 100%; margin: 32px auto;">
+  <%= image_tag project.cover_image.url, class: "card-img-top" %>
+  <div class="card-body">
+    <h5 class="card-title">
+      <%= project.name %>
+    </h5>
+    <p class="card-text">
+      <p><%= project.brief %></p>
+      <p style="color: red;" class="seconds_countdown" data-seconds="<%= project.seconds_left %>"></p>
+      <p>已經有 <%= project.pledges.count %> 個人贊助</p>
+    </p>
+  </div>
+</div>
+<% end %>
+
