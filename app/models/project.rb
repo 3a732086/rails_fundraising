@@ -5,7 +5,7 @@ class Project < ApplicationRecord
 
   enum status: [:is_hidden, :is_published, :succeeded, :failed, :cancel]
 
-  # mount_uploader :cover_image, CoverImageUploader
+  mount_uploader :cover_image, CoverImageUploader
 
 
   validates :name, :brief, :description, :ad_url, :cover_image, presence: true
