@@ -1,6 +1,7 @@
 class ProjectSupport < ApplicationRecord
   belongs_to :project
   has_many :pledges
+  has_many :paid_pledges, -> {where(status: [:paid])}, class_name: 'Pledge'
 
   enum status: [:is_hidden, :is_published]
 
