@@ -8,5 +8,14 @@ class Pledge < ApplicationRecord
   validates :project_name, :support_name, presence: true
   validates_numericality_of :support_price, greater_than_or_equal_to: 0
   validates_numericality_of :quantity, greater_than_or_equal_to: 1
+  validate :is_user_project_owner?
+
+  private
+
+  def is_user_project_owner?
+    if project_support.project.project_owner.user == user
+      errors.add(:user, "不可以投資自己的專案")
+    end
+  end
 
 end
