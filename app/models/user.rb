@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  mount_uploader :avator, CoverImageUploader
+
   has_many :pledges
   has_one :project_owner
 end
