@@ -46,4 +46,27 @@ RailsAdmin.config do |config|
       end
     end
   end
+
+  config.model Pledge do
+    configure :issue_date do
+      strftime_format do
+        '%d-%m-%Y %H:%M:%S'
+      end
+    end
+  end
+
+  config.model Payment do
+    configure :paid_date do
+      strftime_format do
+        '%d-%m-%Y %H:%M:%S'
+      end
+    end
+
+    configure :unpaid_payment_expire_date do
+      strftime_format do
+        '%d-%m-%Y %H:%M:%S'
+      end
+    end
+  end
+  
 end
