@@ -1,0 +1,8 @@
+zh-TW:
+  admin:
+    actions:
+      dashboard:
+        breadcrumb: 儀表板
+        menu: 儀表板
+  date:
+    month_names: 
