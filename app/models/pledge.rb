@@ -23,6 +23,21 @@ class Pledge < ApplicationRecord
     project.update_status_if_reaching_goal!
   end
 
+  def status_to_string
+    case status_before_type_cast  #取得 enum 的值
+    when Pledge.statuses[:not_selected_yet]
+      return "未選擇"
+    when Project.statuses[:not_paid]
+      return "未付款"
+    when Project.statuses[:paid]
+      return "已付款"
+    when Project.statuses[:canceled]
+      return "已取消"
+    else
+      return "狀態未明"
+    end
+  end
+
   private
 
   def is_user_project_owner?
