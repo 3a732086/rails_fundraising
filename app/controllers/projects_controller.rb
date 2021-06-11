@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   def show
     @due_date = @project.due_date
     @project_supports = @project.project_supports
-    @percentage = (@project.percentage_of_reaching_goal * 100)
+    @percentage = (@project.percentage_of_reaching_goal * 100).round(2)
   end
 
   private
