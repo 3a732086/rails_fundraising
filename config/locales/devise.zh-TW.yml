@@ -14,6 +14,8 @@ zh-TW:
               too_short: 密碼要大於六個字元
             password_confirmation:
               confirmation: 密碼與確認密碼不符
+            confirmation_token:
+              invalid: 無效
     attributes:
       user:
         confirmation_sent_at: 確認信已寄於
