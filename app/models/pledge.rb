@@ -14,6 +14,13 @@ class Pledge < ApplicationRecord
     support_price * quantity
   end
 
+  def paid!
+    self.issue_date = Time.now
+    super
+
+    project.update_status_if_reaching_goal!
+  end
+
   private
 
   def is_user_project_owner?
