@@ -10,12 +10,12 @@ class PledgesController < ApplicationController
     @pledge = Pledge.create({
                               user: current_user,
                               project_support: @project_support,
-                              project_name: @project_support.project_name,
+                              project_name: @project_support.project.name,
                               support_name: @project_support.name,
                               support_price: @project_support.price,
                               quantity: params[:quantity]
                             })
-    redirect_to mpg_payment_path(pledge: @pledge)
+    redirect_to mpg_payments_path(pledge_id: @pledge.id)
   end
 
   private
@@ -23,7 +23,7 @@ class PledgesController < ApplicationController
   def is_login?
     unless current_user
       flash[:error] = "您尚未登入"
-      redirect_to login_path
+      redirect_to user_session_path  #login_path
       return
     end
   end
