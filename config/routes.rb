@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   end
 
   resources :projects, only: [:show] do
+    collection do
+      get :owner
+      patch :owner, action: :owner_update
+    end
   end
 
   resources :pledges, only: [:show, :create] do
