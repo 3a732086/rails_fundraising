@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :pledges, only: [:show, :create] do
+  resources :pledges, only: [:index, :show, :create] do
   end
 
   resources :payments do
