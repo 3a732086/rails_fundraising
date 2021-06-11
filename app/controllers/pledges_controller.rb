@@ -11,9 +11,9 @@ class PledgesController < ApplicationController
   def show
     case @pledge.status_before_type_cast
     when Pledge.statuses[:paid]
-      return "paid"
+      render "paid"
     when Pledge.statuses[:not_paid]
-      return "not_paid"
+      render "not_paid"
     else
       flash[:alert] = "沒有此贊助"
       redirect_to root_path
