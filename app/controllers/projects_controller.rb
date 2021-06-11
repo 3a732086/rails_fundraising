@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   private
 
   def get_project
-    @project = Project.is_published.find_by_id(params[:id])
+    @project = Project.is_now_on_sale.find_by_id(params[:id])
 
     unless @project
       flash[:alert] = "沒有這個募資專案"
