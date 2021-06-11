@@ -11,4 +11,15 @@ class User < ApplicationRecord
 
   has_many :pledges
   has_one :project_owner
+
+  def project_owner
+    @project_owner = super
+
+    if @project_owner.blank?
+      @project_owner = ProjectOwner.create(user: self)
+    end
+
+    return @project_owner
+  end
+
 end
