@@ -86,7 +86,7 @@ class PaymentsController < ApplicationController
 
           # pledge 改成已付款，Model裡面有override
           pledge.paid!
-          redirect_to pledge_path(@pledge)
+          redirect_to pledge_path(pledge)
           return
         end
       end
@@ -145,7 +145,7 @@ class PaymentsController < ApplicationController
 
           # pledge改成未付款
           pledge.not_paid!
-          redirect_to pledge_path(@pledge)
+          redirect_to pledge_path(pledge)
           return
         end
       end
