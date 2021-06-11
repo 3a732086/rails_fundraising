@@ -63,7 +63,7 @@ Rails.application.configure do
   # email
   # =====================
   # for email
-  config.action_mailer.default_url_options = {protocol: 'http', host: 'https://rails-fundraising.herokuapp.com/' }
+  config.action_mailer.default_url_options = {protocol: 'http', host: 'rails-fundraising.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
