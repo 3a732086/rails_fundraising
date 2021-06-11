@@ -145,7 +145,7 @@ class PaymentsController < ApplicationController
   def canceled
     redirect_to root_path
   end
-ㄍ
+
   def notify
     if params["Status"] == "SUCCESS"
       tradeInfo = params["TradeInfo"]
