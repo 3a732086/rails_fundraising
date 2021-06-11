@@ -10,6 +10,7 @@ class User < ApplicationRecord
   mount_uploader :avator, CoverImageUploader
 
   has_many :pledges
+  has_many :valided_pledges, -> {where(status: [:not_paid, :paid])}, class_name: "Pledge"
   has_one :project_owner
 
   def project_owner
