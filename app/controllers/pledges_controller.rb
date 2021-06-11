@@ -5,8 +5,12 @@ class PledgesController < ApplicationController
 
   before_action :is_login?
   before_action :get_project_support, only: [:create]
-  before_action :get_pledge, except: [:create]
+  before_action :get_pledge, except: [:create, :index]
 
+
+  def index
+    @pledges = current_user.valided_pledges
+  end
 
   def show
     case @pledge.status_before_type_cast
