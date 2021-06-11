@@ -27,11 +27,11 @@ class Pledge < ApplicationRecord
     case status_before_type_cast  #取得 enum 的值
     when Pledge.statuses[:not_selected_yet]
       return "未選擇"
-    when Project.statuses[:not_paid]
+    when Pledge.statuses[:not_paid]
       return "未付款"
-    when Project.statuses[:paid]
+    when Pledge.statuses[:paid]
       return "已付款"
-    when Project.statuses[:canceled]
+    when Pledge.statuses[:canceled]
       return "已取消"
     else
       return "狀態未明"
