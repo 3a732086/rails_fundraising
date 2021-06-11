@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :projects, only: [:show] do
   end
 
-  resources :pledges, only: [:create] do
+  resources :pledges, only: [:show, :create] do
   end
 
   resources :payments do
