@@ -27,7 +27,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def after_omniauth_failure_path_for(scope)
   #   super(scope)
   # end
-
+  skip_before_action :verify_authenticity_token, only: :facebook
 
   def facebook
     @user = User.from_omniauth(request.env["omniauth.auth"])
