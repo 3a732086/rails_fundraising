@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :is_login?, except: [:show, :search]
   before_action :get_project, only: [:show]
+  before_action :get_project_for_update, only: [:edit, :update, :destroy]
 
   def show
     @due_date = @project.due_date
@@ -9,24 +10,50 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    @project = Project.new
+    @categories = Category.is_published
   end
 
   def create
+    @project = Project.create(project_permit.merge(project_owner: current_user.project_owner))
+
+    if @project.valid?
+      redirect_to edit_project_path(@project)
+    else
+      flash[:alert] = @project.errors.messages.map{|k,v| "#{t(k)}: #{v[0]}" }
+      redirect_to new_project_path
+    end
   end
 
   def edit
+    @project_supports = @project.project_supports
   end
 
   def update
+    if @project.update(project_permit)
+      flash[:notice] = "更新成功"
+    else
+      flash[:alert] = @project.errors.messages.map{|k,v| "#{t(k)}: #{v[0]}" }
+    end
+
+    redirect_to edit_project_path(@project)
   end
 
   def destroy
+    if @project.pledges.count > 0
+      flash[:alert] = "募資專案: #{@project.name} 已經有人贊助，無法刪除"
+    else
+      @project.cancel!
+      flash[:alert] = "募資專案: #{@project.name} 已經被刪除"
+    end
+
+    redirect_to owner_projects_path
   end
 
   def owner
     @project_owner = current_user.project_owner
 
-    @projects = @project_owner.projects
+    @projects = @project_owner.projects.where.not(status: [:cancel])
   end
 
   def owner_update
@@ -57,6 +84,16 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def get_project_for_update
+    @project = Project.find_by(id: params[:id], project_owner: current_user.project_owner)
+
+    unless @project
+      flash[:alert] = "沒有這個募資專案"
+      redirect_to root_path
+      return
+    end
+  end
+
   def is_login?
     unless  current_user
       flash[:error] = "您尚未登入"
@@ -67,6 +104,10 @@ class ProjectsController < ApplicationController
 
   def project_owner_permit
     params.require(:project_owner).permit([:description, :cover_image])
+  end
+
+  def project_permit
+    params.require(:project).permit([:name, :category_id, :brief, :description, :cover_image, :ad_url, :goal, :due_date, :status])
   end
 
 end
