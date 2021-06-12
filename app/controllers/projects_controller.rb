@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :is_login?, except: [:show]
+  before_action :is_login?, except: [:show, :search]
   before_action :get_project, only: [:show]
 
   def show
@@ -17,6 +17,16 @@ class ProjectsController < ApplicationController
     @project_owner.update(project_owner_permit)
 
     redirect_to action: :owner
+  end
+
+  def search
+    @key_words = params[:keyWord]
+    if @key_words
+      word = "%#{@key_words}%"
+      @projects = Project.eager_load(:user).is_now_on_sale.where("projects.name LIKE ? or brief LIKE ? or users.name Like ?",word, word, word)
+    else
+      @projects = []
+    end
   end
 
   private
