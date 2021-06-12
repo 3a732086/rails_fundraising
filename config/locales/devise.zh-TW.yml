@@ -2,6 +2,22 @@ zh-TW:
   activerecord:
     errors:
       models:
+        project:
+          attributes:
+            category:
+              required: 類別不能空白
+            name:
+              blank: 名稱不能空白
+            brief:
+              blank: 簡介不能空白
+            description:
+              blank: 敘述不能空白
+            ad_url:
+              blank: 廣告影片網址不能空白
+            cover_image:
+              blank: 封面圖片不能空白
+            goal:
+              not_a_number: 不是數字
         user:
           attributes:
             email:
