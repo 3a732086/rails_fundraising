@@ -2,6 +2,14 @@ zh-TW:
   activerecord:
     errors:
       models:
+        project_support:
+          attributes:
+            name:
+              blank: 名稱不能空白
+            description:
+              blank: 名稱不能空白
+            price:
+              not_a_number: 價錢不能空白，而且必須是一個數字
         project:
           attributes:
             category:
