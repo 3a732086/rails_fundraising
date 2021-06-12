@@ -69,7 +69,7 @@
               <td><%= support.price %></td>
               <td><%= support.description %></td>
               <td><%= support.status_to_string %></td>
-              <td>編輯</td>
+              <td><a class="project_support_edit_button" href="javascript:void(0);" data-toggle="modal" data-target="#edit_project_support" data-detail="<%= support.to_json %>">編輯</a></td>
               <td><%= link_to '刪除', project_support_path(project_support_id: support.id), method: :delete, data: { confirm: '你確定要刪除嗎?' } %></td>
             </tr>
           <% end %>
@@ -79,6 +79,35 @@
     </div>
   </div>
 </div>
+
+
+<div id="edit_project_support" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="padding: 48px 16px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <%= form_for @first_project_support, url: project_support_path(project_support_id: @first_project_support.id), html: {id: "project_support_edit_form"} do |f| %>
+              <%= f.label :name, "贊助名稱" %><br/>
+              <%= f.text_field :name, class: "form-control" %>
+              <br/>
+              <%= f.label :description, "完整敘述" %><br/>
+              <%= f.text_area :description, class: "form-control", size: "30x10" %>
+              <%= f.label :price, "贊助金額" %><br/>
+              <%= f.number_field :price, min: 0, class: "form-control" %>
+              <br/>
+              <%= f.label "上架狀態"%><br/>
+              <%= f.select :status, ProjectSupport.statuses.keys.map { |s| [s.humanize, s] }, {include_blank: true}, {class: "form-control"} %>
+              <br/>
+              <%= f.submit "修改", class: "btn btn-info" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script>
     $(function(){
@@ -98,5 +127,17 @@
                 $("#" + image_tag_id).attr('src', original_url);
             }
         }
+
+        $(".project_support_edit_button").click(function(){
+            var detail = $(this).data("detail");
+
+            var newURL = "/projects/"+ <%= @project.id %> +"/project_supports/" + detail.id;
+            $("#project_support_edit_form").attr("action", newURL);
+            $("#project_support_name").val(detail.name);
+            $("#project_support_description").val(detail.description);
+            $("#project_support_price").val(detail.price);
+            $("#project_support_status").val(detail.status);
+        })
+
     });
 </script>

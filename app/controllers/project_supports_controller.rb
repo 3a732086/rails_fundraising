@@ -19,6 +19,16 @@ class ProjectSupportsController < ApplicationController
     redirect_to edit_project_path(@project)
   end
 
+  def update
+    if @project_support.update(project_support_permit)
+      flash[:notice] = "更新成功"
+    else
+      flash[:alert] = @project_support.errors.messages.map{|k,v| "#{t(k)}: #{v[0]}" }
+    end
+
+    redirect_to edit_project_path(@project)
+  end
+
   def destroy
     if @project_support.pledges.count > 0
       flash[:alert] = "贊助方案: #{@project_support.name} 已經有人贊助，無法刪除"
@@ -50,6 +60,10 @@ class ProjectSupportsController < ApplicationController
       redirect_to edit_project_path(@project)
       return
     end
+  end
+
+  def project_support_permit
+    params.require(:project_support).permit([:name, :description, :price, :status])
   end
 
 end

@@ -28,6 +28,16 @@ class ProjectsController < ApplicationController
   def edit
     @project_supports = @project.project_supports
     @new_project_support = ProjectSupport.new
+    @first_project_support = @project_supports.first
+
+    unless @first_project_support
+      @project_support = ProjectSupport.create(
+                            project: @project,
+                            name: "未命名",
+                            description: "未填寫",
+                            price: 0
+                          )
+    end
   end
 
   def update
