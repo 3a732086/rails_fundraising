@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
 
   def edit
     @project_supports = @project.project_supports
+    @new_project_support = ProjectSupport.new
   end
 
   def update
@@ -44,7 +45,7 @@ class ProjectsController < ApplicationController
       flash[:alert] = "募資專案: #{@project.name} 已經有人贊助，無法刪除"
     else
       @project.cancel!
-      flash[:alert] = "募資專案: #{@project.name} 已經被刪除"
+      flash[:notice] = "募資專案: #{@project.name} 已經被刪除"
     end
 
     redirect_to owner_projects_path
