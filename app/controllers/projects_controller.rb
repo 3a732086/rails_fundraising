@@ -8,8 +8,25 @@ class ProjectsController < ApplicationController
     @percentage = (@project.percentage_of_reaching_goal * 100).round(2)
   end
 
+  def new
+  end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
   def owner
     @project_owner = current_user.project_owner
+
+    @projects = @project_owner.projects
   end
 
   def owner_update
