@@ -34,7 +34,8 @@
                     <td><%= project.brief %></td>
                     <td><%= project.due_date %></td>
                     <td><%= project.status_to_string %></td>
-                    <td><%= link_to '查看', edit_project_path(project) %></td>
+                    <td><%= link_to '修改', edit_project_path(project) %></td>
+                    <td><%= link_to '刪除', project_path(project), method: :delete, data: { confirm: '你確定要刪除嗎?' } %></td>
                   </tr>
                 <% end %>
               </tbody>
