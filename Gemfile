@@ -40,6 +40,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
 gem 'devise-i18n'
 gem 'omniauth-facebook'
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem 'carrierwave'
 gem 'rails_admin'
 gem 'rails_admin-i18n'
