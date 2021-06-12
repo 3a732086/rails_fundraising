@@ -15,11 +15,15 @@ Rails.application.routes.draw do
   resources :categories, only: [:show] do
   end
 
-  resources :projects, except: [:index] do
+  resources :projects, except: [:index] do   #collection的網址 => projects/owner
     collection do
       get :owner
       patch :owner, action: :owner_update
       get :search
+    end
+    member do
+      resources :project_supports, param: :project_support_id, except: [:index, :show, :edit, :new] do  #member的網址 => projects/1/project_supports
+      end
     end
   end
 
