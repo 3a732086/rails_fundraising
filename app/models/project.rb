@@ -2,6 +2,7 @@ class Project < ApplicationRecord
   belongs_to :project_owner
   belongs_to :category
 
+  has_one :user, through: :project_owner
   has_many :project_supports
   has_many :pledges, through: :project_supports
   has_many :paid_pledges, through: :project_supports
