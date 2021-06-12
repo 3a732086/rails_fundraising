@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:show] do
   end
 
-  resources :projects, only: [:show] do
+  resources :projects, except: [:index] do
     collection do
       get :owner
       patch :owner, action: :owner_update
