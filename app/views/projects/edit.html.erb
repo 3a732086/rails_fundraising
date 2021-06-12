@@ -42,9 +42,11 @@
     </div>
     <div class='col-12'>
       <div style="margin: 32px auto;">
-        <h3>所有贊助方案：</h3>
         <div class="clearfix">
-          <%#= link_to "新增", new_project_path, class: "btn btn-info float-right" %>
+          <h3 class="float-left">所有贊助方案：</h3>
+          <%= form_for @new_project_support do |f| %>
+            <%= f.submit "新增", class: "btn btn-info float-right" %>
+          <% end %>
         </div>
         <br/>
         <table class="table table-striped">
@@ -68,7 +70,7 @@
               <td><%= support.description %></td>
               <td><%= support.status_to_string %></td>
               <td>編輯</td>
-              <td>刪除</td>
+              <td><%= link_to '刪除', project_support_path(project_support_id: support.id), method: :delete, data: { confirm: '你確定要刪除嗎?' } %></td>
             </tr>
           <% end %>
           </tbody>
