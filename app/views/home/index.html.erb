@@ -1,3 +1,24 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <% @slider_items.each_with_index do |item, index| %>
+      <li data-target="#carouselExampleIndicators" data-slide-to="<%= index %>" class="<%= (index == 0) ? "active" : "" %>"></li>
+    <% end %>
+  </ol>
+  <div class="carousel-inner" style="height: 400px;">
+    <% @slider_items.each_with_index do |item, index| %>
+      <div class="carousel-item <%= (index == 0) ? "active" : "" %>">
+        <img src="<%= item.cover_image.url %>" class="d-block w-100" alt="First slide" style="height: 400px; object-fit: cover;" >
+        <div class="carousel-caption d-none d-md-block">
+          <%= link_to (item.url || "#"), style: "color: white;" do %>
+            <h1><%= item.title %></h1>
+          <% end %>
+          <p><%= item.description %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
 <div id="home_index" style="margin: 56px 0;">
   <div class="container">
     <p>正在募資</p>
